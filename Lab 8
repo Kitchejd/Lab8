@@ -1,0 +1,10 @@
+import requests, re
+from bs4 import BeautifulSoup
+
+
+r = requests.get('https://www.google.com').content
+page = BeautifulSoup(r,"lxml")
+type(page)
+tags = page.findAll("a", {"href": re.compile('(google)')})
+for a in tags:
+        print(a.get('href'))
